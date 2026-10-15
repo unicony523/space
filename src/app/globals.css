@@ -1,26 +1,221 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --font-pixel: 'Press Start 2P', monospace;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.font-pixel {
+  font-family: var(--font-pixel), monospace;
 }
+
+.pixel-box {
+  box-shadow: 
+    -4px 0 0 0 #fff,
+    4px 0 0 0 #fff,
+    0 -4px 0 0 #fff,
+    0 4px 0 0 #fff;
+}
+
+.pixel-box-green {
+  box-shadow: 
+    -4px 0 0 0 #22c55e,
+    4px 0 0 0 #22c55e,
+    0 -4px 0 0 #22c55e,
+    0 4px 0 0 #22c55e;
+}
+
+.pixel-box-yellow {
+  box-shadow: 
+    -4px 0 0 0 #eab308,
+    4px 0 0 0 #eab308,
+    0 -4px 0 0 #eab308,
+    0 4px 0 0 #eab308;
+}
+
+.pixel-box-red {
+  box-shadow: 
+    -4px 0 0 0 #ef4444,
+    4px 0 0 0 #ef4444,
+    0 -4px 0 0 #ef4444,
+    0 4px 0 0 #ef4444;
+}
+
+.crt-overlay::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+  background-size: 100% 4px;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.neon-text-green {
+  text-shadow: 0 0 8px rgba(34, 197, 94, 0.8), 0 0 16px rgba(34, 197, 94, 0.4);
+}
+
+.neon-text-cyan {
+  text-shadow: 0 0 8px rgba(6, 182, 212, 0.8), 0 0 16px rgba(6, 182, 212, 0.4);
+}
+
+.neon-text-yellow {
+  text-shadow: 0 0 8px rgba(234, 179, 8, 0.8), 0 0 16px rgba(234, 179, 8, 0.4);
+}
+
+.neon-text-red {
+  text-shadow: 0 0 8px rgba(239, 68, 68, 0.8), 0 0 16px rgba(239, 68, 68, 0.4);
+}
+
+@keyframes retro-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.animate-retro-blink {
+  animation: retro-blink 1s infinite;
+}
+
+/* 몬스터 꿈틀거림 애니메이션 */
+@keyframes monster-wiggle-1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  25% { transform: translateY(-4px) rotate(-3deg) scale(1.04); }
+  75% { transform: translateY(3px) rotate(3deg) scale(0.97); }
+}
+
+@keyframes monster-wiggle-2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  33% { transform: translateY(4px) rotate(4deg) scale(1.05); }
+  66% { transform: translateY(-3px) rotate(-4deg) scale(0.96); }
+}
+
+@keyframes monster-wiggle-3 {
+  0%, 100% { transform: translateY(0px) scale(1, 1); }
+  50% { transform: translateY(-5px) scale(1.08, 0.92); }
+}
+
+.animate-wiggle-1 {
+  animation: monster-wiggle-1 2.2s ease-in-out infinite;
+}
+
+.animate-wiggle-2 {
+  animation: monster-wiggle-2 2.8s ease-in-out infinite;
+}
+
+.animate-wiggle-3 {
+  animation: monster-wiggle-3 1.8s ease-in-out infinite;
+}
+
+/* 이미지의 START 스타일 노란색 픽셀 그림체 */
+.retro-start-title {
+  color: #fad129;
+  text-shadow: 
+    4px 4px 0 #795200,
+    -3px -3px 0 #000,
+    3px -3px 0 #000,
+    -3px 3px 0 #000,
+    0 4px 0 #000,
+    0 -4px 0 #000,
+    4px 0 0 #000,
+    -4px 0 0 #000;
+  letter-spacing: 0.15em;
+}
+
+.retro-pixel-input {
+  background-color: #0c0d24;
+  color: #fad129;
+  border: 4px solid #fad129;
+  box-shadow: 
+    inset 0 0 10px rgba(250, 209, 41, 0.3),
+    0 4px 0 0 #795200;
+  text-shadow: 2px 2px 0 #795200;
+  letter-spacing: 0.15em;
+}
+
+/* 반짝 빛나는 네온 픽셀 타이틀 SPACE PRO */
+@keyframes neon-pulse-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px #38bdf8,
+      0 0 20px #0ea5e9,
+      0 0 30px #0284c7,
+      3px 3px 0 #000,
+      -3px -3px 0 #000,
+      3px -3px 0 #000,
+      -3px 3px 0 #000,
+      0 4px 0 #0369a1;
+    filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.8));
+  }
+  50% {
+    text-shadow: 
+      0 0 18px #7dd3fc,
+      0 0 35px #38bdf8,
+      0 0 50px #0ea5e9,
+      3px 3px 0 #000,
+      -3px -3px 0 #000,
+      3px -3px 0 #000,
+      -3px 3px 0 #000,
+      0 4px 0 #0284c7;
+    filter: drop-shadow(0 0 25px rgba(125, 211, 252, 1));
+  }
+}
+
+.title-space-pro {
+  color: #ffffff;
+  font-family: var(--font-pixel), monospace;
+  animation: neon-pulse-glow 2s ease-in-out infinite;
+  letter-spacing: 0.12em;
+}
+
+/* 반짝이는 픽셀 텍스트 효과 (레이블 및 안내 텍스트) */
+@keyframes pixel-twinkle {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(56, 189, 248, 0.7);
+  }
+  50% {
+    opacity: 0.85;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 1), 0 0 22px rgba(56, 189, 248, 0.9), 0 0 30px rgba(14, 165, 233, 0.7);
+  }
+}
+
+.glowing-pixel-text {
+  font-family: var(--font-pixel), monospace;
+  animation: pixel-twinkle 1.8s ease-in-out infinite;
+}
+
+/* 입체 픽셀 스타일 박스 버튼 */
+.pixel-btn-start {
+  box-shadow: 
+    -3px 0 0 0 #fff,
+    3px 0 0 0 #fff,
+    0 -3px 0 0 #fff,
+    0 3px 0 0 #fff,
+    0 6px 0 0 #000;
+  transition: all 0.1s ease-in-out;
+}
+
+.pixel-btn-start:hover {
+  filter: brightness(1.15);
+  box-shadow: 
+    -3px 0 0 0 #fff,
+    3px 0 0 0 #fff,
+    0 -3px 0 0 #fff,
+    0 3px 0 0 #fff,
+    0 0 16px rgba(250, 204, 21, 0.8);
+}
+
+.pixel-btn-start:active {
+  transform: translateY(3px);
+  box-shadow: 
+    -3px 0 0 0 #fff,
+    3px 0 0 0 #fff,
+    0 -3px 0 0 #fff,
+    0 3px 0 0 #fff,
+    0 2px 0 0 #000;
+}
+
+
